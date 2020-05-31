@@ -65,8 +65,11 @@ describe('SignupComponent', () => {
 
   it('form should be valid', async(() => {
     comp.signupForm.controls['email'].setValue('daniel@gmail.com');
-    comp.signupForm.controls['password'].setValue('test12345');
-    comp.signupForm.controls['confirmPassword'].setValue('test12345');
+    comp.signupForm.controls['name'].setValue('Daniel Insurance');
+    comp.signupForm.controls['phone'].setValue('+237673489057');
+    comp.signupForm.controls['address'].setValue('1st Boulevard, NY');
+    comp.signupForm.controls['password'].setValue('test123');
+    comp.signupForm.controls['confirmPassword'].setValue('test123');
     expect(comp.signupForm.valid).toBeTruthy();
   }));
 });

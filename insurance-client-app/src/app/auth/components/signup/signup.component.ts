@@ -18,11 +18,42 @@ export class SignupComponent implements OnInit {
   };
   submitted = false;
 
-  constructor() {}
+  constructor() {
+    this.createForm();
+  }
 
   ngOnInit() {}
 
-  createForm(): void {}
+  createForm(): void {
+    this.signupForm = new FormGroup({
+      email: new FormControl(this.signup.email, [
+        Validators.required,
+        Validators.email
+      ]),
+      name: new FormControl(this.signup.name, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      phone: new FormControl(this.signup.phone, [
+        Validators.required,
+        Validators.minLength(9)
+      ]),
+      address: new FormControl(this.signup.address, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      confirmPassword: new FormControl(this.signup.confirmPassword, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      password: new FormControl(this.signup.password, [
+        Validators.required,
+        Validators.minLength(4)
+      ])
+    });
+  }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    this.submitted = true;
+  }
 }
