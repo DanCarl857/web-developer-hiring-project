@@ -8,7 +8,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  submitted: false;
+  login = {
+    email: '',
+    password: ''
+  };
+  submitted = false;
 
   constructor() {
     this.createForm();
@@ -16,7 +20,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  createForm(): void {}
+  createForm(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl(this.login.email, [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl(this.login.password, [
+        Validators.required,
+        Validators.minLength(4)
+      ])
+    });
+  }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    this.submitted = true;
+  }
 }

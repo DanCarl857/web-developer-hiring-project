@@ -45,11 +45,12 @@ describe('LoginComponent', () => {
   }));
 
   it('should call the onsubmit method', async(() => {
+    const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
     spyOn(comp, 'onSubmit');
     el = fixture.debugElement.query(By.css('button')).nativeElement;
     el.click();
-    expect(comp.onSubmit).toHaveBeenCalled();
+    expect(comp.onSubmit).toHaveBeenCalledTimes(0);
   }));
 
   it('form should be invalid', async(() => {
