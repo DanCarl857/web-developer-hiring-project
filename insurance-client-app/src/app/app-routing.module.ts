@@ -1,15 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
   {
-    path: 'homepage',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'authentication/login'
   },
+  // {
+  //   path: 'homepage',
+  //   loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
+  // },
   {
     path: 'authentication',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
   }
+  // {
+  //   path: 'core',
+  //   loadChildren: () => import('./core/core.module').then((m) => m.CoreModule)
+  // }
+  // {
+  //   path: 'authentication',
+  //   pathMatch: 'full',
+  //   loadChildren: () => AuthModule
+  // }
 ];
 
 @NgModule({
