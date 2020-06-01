@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
       unique: true,
       required: true
     },
+    properties: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Property'}]
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });

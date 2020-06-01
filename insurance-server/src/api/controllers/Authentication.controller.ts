@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import express from 'express';
+import express, { request } from 'express';
 import UserWithThatEmailAlreadyExistsException from './../exceptions/UserWithThatEmailAlreadyExistsException';
 import WrongCredentialsException from './../exceptions/WrongCredentialsException';
 import Controller from './../interfaces/Controller.interface';
@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import HttpException from '../exceptions/HttpException';
 import User from '../interfaces/User.interface';
+import PropertyModel from '../models/Property';
 
 class AuthenticationController implements Controller {
     public path = "/auth";
@@ -20,7 +21,33 @@ class AuthenticationController implements Controller {
     private initializeRoutes() {
         this.router.post(`${this.path}/register`, this.register);
         this.router.post(`${this.path}/login`, this.login);
-      }
+        this.router.get(`${this.path}/:id/properties`, this.getAllPropertiesOfUser);
+    }
+
+    private getAllPropertiesOfUser = (request: express.Request, response: express.Response, next: express.NextFunction) => {
+        const id = request.params.id;
+        UserModel.findById(id)
+            .exec()
+            .then(user => {
+                if (!user) {
+                    next(new HttpException(409, 'User does not exist'));
+                } else {
+                    PropertyModel.find({ company: id })
+                        .exec()
+                        .then(doc => {
+                            if (doc) {
+                                response.status(200).json({
+                                    count: doc.length,
+                                    page: doc
+                                })
+                            } else {
+                                next(new HttpException(500, 'No valid entry found for this user'));
+                            }
+                        });
+                }
+            })
+            .catch(err => next(new HttpException(500, err)));
+    }
      
     private register = (request: express.Request, response: express.Response, next: express.NextFunction) => {
         UserModel.find({ email: request.body.email })
