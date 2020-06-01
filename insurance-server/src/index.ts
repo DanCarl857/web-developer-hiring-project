@@ -4,6 +4,11 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import mongoose from 'mongoose';
+
+// Middleware
+import errorMiddleware from './api/middleware/Error.middleware';
+
+// Controllers
 import PropertyController from "./api/controllers/Property.controller";
 
 dotenv.config();
@@ -31,7 +36,7 @@ app.use(loggerMiddleware);
 app.use(cors());
 app.use(express.json());
 app.use('/v1/api', new PropertyController().router);
-
+app.use(errorMiddleware);
 
 // Activate server
 const server = app.listen(PORT, () => {

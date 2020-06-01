@@ -2,6 +2,8 @@ import PropertyModel from './../models/Property';
 import express from 'express';
 import Property from '../interfaces/property.interface';
 import Controller from '../interfaces/Controller.interface';
+import PropertyNotFoundException from '../exceptions/PropertyNotFoundException';
+import HttpException from '../exceptions/HttpException';
 
 class PropertyController implements Controller {
     public path = '/properties';
@@ -20,7 +22,7 @@ class PropertyController implements Controller {
 
     }
 
-    private createProperty(request: express.Request, response: express.Response) {
+    private createProperty(request: express.Request, response: express.Response, next: express.NextFunction) {
         const propertyData: Property = request.body;
         const createdProperty = new PropertyModel(propertyData);
         createdProperty
@@ -33,10 +35,13 @@ class PropertyController implements Controller {
                 //     address: result.address,
                 //     price: result.price
                 // })
-            });
+            })
+            .catch(err => {
+                next(new HttpException(500, 'Error creating a property'))
+            })
     }
     
-    private getAllProperties(request: express.Request, response: express.Response) {
+    private getAllProperties(request: express.Request, response: express.Response, next: express.NextFunction) {
         PropertyModel.find()
             .select('name address price inspected image description contact')
             .exec()
@@ -48,14 +53,11 @@ class PropertyController implements Controller {
                 response.status(200).json(resp);
             })
             .catch(err => {
-                console.log(err);
-                response.status(500).json({
-                    error: err
-                });
+                next(new HttpException(500, 'Error get all properties'))
             });
     }
     
-    private getPropertyById(request: express.Request, response: express.Response) {
+    private getPropertyById(request: express.Request, response: express.Response, next: express.NextFunction) {
         const id = request.params.id;
         PropertyModel.findById(id)
             .select("_id name description inspected price image address contact")
@@ -71,30 +73,29 @@ class PropertyController implements Controller {
                         }
                     });
                 } else {
-                    response.status(404).json({
-                        message: 'No valid entry found for provided ID'
-                    })
+                    next(new PropertyNotFoundException(id));
                 }
             });
     }
     
-    private updateProperty(request: express.Request, response: express.Response) {
+    private updateProperty(request: express.Request, response: express.Response, next: express.NextFunction) {
         const id = request.params.id;
         const propertyData: Property = request.body;
         PropertyModel.findByIdAndUpdate(id, propertyData, { new: true })
             .then(property => {
                 response.status(200).json(property)
             })
+            .catch(err => next(new PropertyNotFoundException(id)));
     }
     
-    private removeProperty(request: express.Request, response: express.Response) {
+    private removeProperty(request: express.Request, response: express.Response, next: express.NextFunction) {
         const id = request.params.id;
         PropertyModel.findByIdAndDelete(id)
             .then(successResponse => {
                 if (successResponse) {
                     response.status(200).json({ message: 'Property deleted'})
                 } else {
-                    response.status(404).json({ message: 'Failed to delete property'})
+                    next(new PropertyNotFoundException(id));
                 }
             })
     }
