@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [FooterComponent, NavbarComponent, SidebarComponent],
-  imports: [CommonModule]
+  imports: [CommonModule],
+  exports: [SidebarComponent, FooterComponent, NavbarComponent]
 })
-export class CoreModule { }
+export class CoreModule {}

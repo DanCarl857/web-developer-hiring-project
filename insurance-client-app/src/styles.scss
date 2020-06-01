@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-image {
+    background: url('/assets/images/insurance.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-content: center;
+}
