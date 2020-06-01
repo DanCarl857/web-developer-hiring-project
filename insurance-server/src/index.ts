@@ -10,6 +10,7 @@ import errorMiddleware from './api/middleware/Error.middleware';
 
 // Controllers
 import PropertyController from "./api/controllers/Property.controller";
+import AuthenticationController from './api/controllers/Authentication.controller';
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use(loggerMiddleware);
 app.use(cors());
 app.use(express.json());
 app.use('/v1/api', new PropertyController().router);
+app.use('/v1/api', new AuthenticationController().router);
 app.use(errorMiddleware);
 
 // Activate server
