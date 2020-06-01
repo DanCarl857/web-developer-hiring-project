@@ -4,9 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/home/home.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, RouterModule]
+  imports: [CommonModule, HomeRoutingModule, RouterModule, CoreModule]
 })
 export class HomeModule {}

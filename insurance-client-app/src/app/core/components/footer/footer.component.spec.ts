@@ -34,8 +34,8 @@ describe('FooterComponent', () => {
     const fixture = TestBed.createComponent(FooterComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h6').textContent).toContain(
-      'By Daniel Carlson'
+    expect(compiled.querySelector('span').textContent).toContain(
+      'Copyright © Loss Control +'
     );
   });
 });
