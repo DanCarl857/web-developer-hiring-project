@@ -25,6 +25,10 @@ const propertySchema = new mongoose.Schema({
     inspected: {
         type: Boolean,
         required: true
+    },
+    company: {
+        ref: 'User',
+        type: mongoose.Schema.Types.ObjectId
     }
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }

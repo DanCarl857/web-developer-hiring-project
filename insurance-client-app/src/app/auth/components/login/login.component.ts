@@ -1,6 +1,9 @@
+/* eslint-disable no-extra-boolean-cast */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/core/models/user.model';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +18,11 @@ export class LoginComponent implements OnInit {
   };
   submitted = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.createForm();
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   ngOnInit() {}
 
   createForm(): void {
@@ -34,8 +38,22 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  async onSubmit() {
     this.submitted = true;
-    this.router.navigate(['/homepage/home']);
+    try {
+      const user = {
+        email: this.loginForm.controls['email'].value,
+        password: this.loginForm.controls['password'].value
+      };
+
+      const res: User = await this.authService.login(user.email, user.password);
+      if (!res) {
+        throw new Error('Login failed');
+      }
+      this.router.navigate(['/homepage/home']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

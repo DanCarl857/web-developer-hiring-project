@@ -28,13 +28,7 @@ class PropertyController implements Controller {
         createdProperty
             .save()
             .then(result => {
-                console.log(result);
-                // response.status(201).json({
-                //     _id: result._id,
-                //     name: result.name,
-                //     address: result.address,
-                //     price: result.price
-                // })
+                response.status(201).json(result);
             })
             .catch(err => {
                 next(new HttpException(500, 'Error creating a property'))
@@ -44,6 +38,7 @@ class PropertyController implements Controller {
     private getAllProperties(request: express.Request, response: express.Response, next: express.NextFunction) {
         PropertyModel.find()
             .select('name address price inspected image description contact')
+            .populate('user', '-password')
             .exec()
             .then(docs => {
                 const resp = {
