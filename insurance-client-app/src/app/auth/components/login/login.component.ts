@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   };
   submitted = false;
 
-  constructor() {
+  constructor(private router: Router) {
     this.createForm();
   }
 
@@ -35,5 +36,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    this.router.navigate(['/home']);
   }
 }

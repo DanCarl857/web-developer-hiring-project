@@ -7,10 +7,10 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: '/login'
   },
-  // {
-  //   path: 'homepage',
-  //   loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
-  // },
+  {
+    path: 'homepage',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
+  },
   {
     path: 'authentication',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
@@ -18,11 +18,6 @@ const routes: Routes = [
   // {
   //   path: 'core',
   //   loadChildren: () => import('./core/core.module').then((m) => m.CoreModule)
-  // }
-  // {
-  //   path: 'authentication',
-  //   pathMatch: 'full',
-  //   loadChildren: () => AuthModule
   // }
 ];
 
