@@ -1,5 +1,9 @@
+/* eslint-disable no-extra-boolean-cast */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { User } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -18,10 +22,11 @@ export class SignupComponent implements OnInit {
   };
   submitted = false;
 
-  constructor() {
+  constructor(private router: Router, private authService: AuthService) {
     this.createForm();
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   ngOnInit() {}
 
   createForm(): void {
@@ -53,7 +58,28 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  async onSubmit() {
     this.submitted = true;
+    try {
+      const user = {
+        email: this.signupForm.controls['email'].value,
+        name: this.signupForm.controls['name'].value,
+        phone: this.signupForm.controls['phone'].value,
+        address: this.signupForm.controls['address'].value,
+        confirmPassword: this.signupForm.controls['confirmPassword'].value,
+        password: this.signupForm.controls['password'].value
+      };
+
+      console.log(user);
+
+      const res: User = await this.authService.register(user);
+      if (!res) {
+        throw new Error('Registration failed');
+      }
+      this.router.navigate(['/login']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

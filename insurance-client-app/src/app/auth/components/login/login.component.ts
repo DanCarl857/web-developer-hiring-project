@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   ngOnInit() {}
 
   createForm(): void {

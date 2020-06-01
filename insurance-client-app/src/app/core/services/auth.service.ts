@@ -31,4 +31,20 @@ export class AuthService {
     localStorage.removeItem('losscontrol-user');
     this.router.navigate(['login']);
   }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  async register(user: any) {
+    // eslint-disable-next-line no-useless-catch
+    try {
+      const BASE_URL = `${this.http.apiRoot}/auth/register`;
+      console.log(user);
+      const res = await this.http.post(BASE_URL, user, false);
+      if (res.error) {
+        throw res;
+      }
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
