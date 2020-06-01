@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'authentication/login'
+    redirectTo: '/login'
   },
   // {
   //   path: 'homepage',
