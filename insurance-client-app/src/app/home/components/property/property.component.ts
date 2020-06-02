@@ -16,7 +16,9 @@ export class PropertyComponent implements OnInit {
     price: '',
     address: '',
     contact: '',
-    description: ''
+    description: '',
+    comment: 'NEUTRAL',
+    rating: 0
   };
   submitted = false;
   properties: any = [];
@@ -48,7 +50,9 @@ export class PropertyComponent implements OnInit {
         Validators.required,
         Validators.minLength(4)
       ]),
-      description: new FormControl()
+      description: new FormControl(),
+      comment: new FormControl(this.property.comment, [Validators.required]),
+      rating: new FormControl(this.property.rating, [Validators.required])
     });
   }
 
@@ -61,7 +65,9 @@ export class PropertyComponent implements OnInit {
         price: this.propertyForm.controls['price'].value,
         address: this.propertyForm.controls['address'].value,
         contact: this.propertyForm.controls['contact'].value,
-        description: this.propertyForm.controls['description'].value
+        description: this.propertyForm.controls['description'].value,
+        comment: this.propertyForm.controls['comment'].value,
+        rating: this.propertyForm.controls['rating'].value
       };
 
       await this.propertyService.createProperty(property);

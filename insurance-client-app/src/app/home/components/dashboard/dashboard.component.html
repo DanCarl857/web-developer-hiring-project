@@ -4,7 +4,8 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
             <h1 class="h3 mb-0 text-gray-800 mt-3 ml-3">Dashboard</h1>
         </div>
-        <div class="row mt-4">
+        <hr>
+        <div class="row mt-4 mb-5">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
@@ -12,7 +13,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Current properties</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">234</div>
+                        <div class="h2 mb-0 font-weight-bold text-gray-800">{{totalCount}}</div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -30,13 +31,8 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Property Inspections Done</div>
                       <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                        <div class="col-auto text-center">
+                          <div class="h2 mb-0 mr-3 font-weight-bold text-gray-800">{{propertiesInspected}}%</div>
                         </div>
                       </div>
                     </div>
@@ -57,12 +53,7 @@
                       <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Defective Properties</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">30%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 30%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                          <div class="h2 mb-0 mr-3 font-weight-bold text-gray-800">{{defectiveProperties}}%</div>
                         </div>
                       </div>
                     </div>
@@ -83,12 +74,7 @@
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Good Properties</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">40%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                          <div class="h2 mb-0 mr-3 font-weight-bold text-gray-800">{{goodProperties}}%</div>
                         </div>
                       </div>
                     </div>
@@ -100,7 +86,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-5">
             <div class="col-xl-4 col-md-6 mb-3">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
@@ -148,70 +134,56 @@
           <div class="row">
             <div class="col-xl-6 col-md-6 mb-3">
               <div class="card border-left-success shadow h-100 py-2">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="card-body">
+                  <h3>Defective Properties</h3>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Comment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let defectiveProperty of defectivePropertyArray">
+                        <th scope="row">{{defectiveProperty._id.substring(0, 5)}}</th>
+                        <td>{{defectiveProperty.name}}</td>
+                        <td>{{defectiveProperty.price}}</td>
+                        <td>{{defectiveProperty.rating}}</td>
+                        <td>{{defectiveProperty.comment}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div class="col-xl-6 col-md-6 mb-3">
               <div class="card border-left-success shadow h-100 py-2">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="card-body">
+                  <h3>Best Properties</h3>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Comment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let bestProperty of goodPropertyArray">
+                        <th scope="row">{{bestProperty._id.substring(0, 5)}}</th>
+                        <td>{{bestProperty.name}}</td>
+                        <td>{{bestProperty.price}}</td>
+                        <td>{{bestProperty.rating}}</td>
+                        <td>{{bestProperty.comment}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

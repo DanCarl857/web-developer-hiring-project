@@ -8,6 +8,8 @@ interface Property {
     price: number;
     inspected: boolean;
     image: string;
+    comment: string;
+    rating: number;
 }
 
 export default Property;
