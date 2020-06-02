@@ -20,7 +20,6 @@ class PropertyController implements Controller {
         this.router.patch(`${this.path}/:id`, this.updateProperty);
         this.router.delete(`${this.path}/:id`, this.removeProperty);
         this.router.post(this.path, this.createProperty);
-
     }
 
     private createProperty(request: express.Request, response: express.Response, next: express.NextFunction) {
@@ -33,7 +32,9 @@ class PropertyController implements Controller {
             contact: propertyData.contact,
             description: propertyData.description,
             inspected: propertyData.inspected,
-            company: propertyData.company
+            company: propertyData.company,
+            comment: propertyData.comment,
+            rating: propertyData.rating
         });
         createdProperty
             .save()
@@ -41,14 +42,13 @@ class PropertyController implements Controller {
                 response.status(201).json(result);
             })
             .catch(err => {
-                console.log(err);
                 next(new HttpException(500, 'Error creating a property'))
             })
     }
     
     private getAllProperties(request: express.Request, response: express.Response, next: express.NextFunction) {
         PropertyModel.find()
-            .select('name address price inspected image description contact')
+            .select('name address price inspected image description comment contact rating')
             .populate('company')
             .exec()
             .then(docs => {
@@ -66,7 +66,7 @@ class PropertyController implements Controller {
     private getPropertyById(request: express.Request, response: express.Response, next: express.NextFunction) {
         const id = request.params.id;
         PropertyModel.findById(id)
-            .select("_id name description inspected price image address contact")
+            .select("_id name description inspected price comment image address contact rating")
             .exec()
             .then(doc => {
                 if (doc) {

@@ -26,10 +26,10 @@ export class PropertyService {
   async createProperty(data: any) {
     try {
       const value = window.localStorage.getItem('losscontrol-user');
-      data.inspected = false;
       data.company = JSON.parse(value)._id;
       data.contact = data.contact.toString();
       const BASE_URL = `${this.http.apiRoot}/properties`;
+      data.inspected = data.rating > 0 ? true : false;
       const res = await this.http.post(BASE_URL, data, false);
       if (res.error) {
         throw res;

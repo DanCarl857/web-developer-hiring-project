@@ -26,6 +26,14 @@ const propertySchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
+    comment: {
+        type: String,
+        enum: ['DEFECTIVE', 'NEUTRAL', 'GOOD'],
+        default: 'NEUTRAL'
+    },
+    rating: {
+        type: Number,
+    },
     company: {
         ref: 'User',
         type: mongoose.Schema.Types.ObjectId

@@ -64,6 +64,15 @@
                                 </div>
                             </div>
                             <br>
+                            <div class="form-group">
+                                <label for="commentInput">Comment</label>
+                                <input type="text" id="commentInput" class="form-control" formControlName="comment" placeholder="ex. NEUTRAL, DEFECTIVE, GOOD">
+                            </div>
+                            <div class="form-group">
+                                <label for="ratingInput">Rating</label>
+                                <input type="text" id="ratingInput" class="form-control" formControlName="rating" placeholder="Percentage rating">
+                            </div>
+                            <br>
                             <button class="btn btn-primary btn-user btn-block" type="submit" [disabled]="!propertyForm.valid">Create Property</button>
                         </form>
                     </div>
@@ -72,6 +81,7 @@
             </div>
             <!-- End of Modal -->
         </div>
+        <hr>
         <div class="row mt-4">
             <div class="col-xl-12 col-md-12 mb-3">
                 <div class="card border-left-success shadow h-100 py-2">
@@ -86,7 +96,8 @@
                                 <th scope="col">Contact</th>
                                 <th scope="col">Inspected</th>
                                 <th scope="col">Created At</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">Rating</th>
+                                <th scope="col">Comment</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -100,6 +111,8 @@
                                     <span class="badge badge-primary">{{property.inspected}}</span>
                                 </td>
                                 <td>June 3rd 2020</td>
+                                <td>{{property.rating}}</td>
+                                <td>{{property.comment}}</td>
                                 <td></td>
                               </tr>
                             </tbody>
