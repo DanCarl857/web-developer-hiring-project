@@ -18,7 +18,7 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        <form id="property-form" [formGroup]="propertyForm" (ngSubmit)="onSubmit()" novalidate>
+                        <form id="property-form" [formGroup]="propertyForm" (ngSubmit)="onSubmit(c)" novalidate>
                             <div class="form-group">
                                 <label for="nameInput">Name</label>
                                 <input type="text" id="nameInput" class="form-control" formControlName="name" placeholder="Enter company name...">
@@ -90,26 +90,14 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Sunset Boulevard, 123 Apt</td>
-                                <td>$ 45000</td>
-                                <td>@123 Boulevard Apt, California</td>
-                                <td>+1674356783</td>
+                              <tr *ngFor="let property of properties">
+                                <th scope="row">{{property._id.substring(0, 5)}}</th>
+                                <td>{{property.name}}</td>
+                                <td>$ {{property.price}}</td>
+                                <td>{{property.address}}</td>
+                                <td>{{property.contact}}</td>
                                 <td>
-                                    <span class="badge badge-primary">NO</span>
-                                </td>
-                                <td>June 3rd 2020</td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Sunset Boulevard, 123 Apt</td>
-                                <td>$ 45000</td>
-                                <td>@123 Boulevard Apt, California</td>
-                                <td>+1674356783</td>
-                                <td>
-                                    <span class="badge badge-success">YES</span>
+                                    <span class="badge badge-primary">{{property.inspected}}</span>
                                 </td>
                                 <td>June 3rd 2020</td>
                                 <td></td>

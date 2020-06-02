@@ -1,0 +1,48 @@
+/* eslint-disable no-useless-catch */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { Injectable } from '@angular/core';
+import { HttpService } from './http.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PropertyService {
+  constructor(private http: HttpService) {}
+
+  async getAllProperties() {
+    // eslint-disable-next-line no-useless-catch
+    try {
+      const BASE_URL = `${this.http.apiRoot}/properties`;
+      const res = await this.http.get(BASE_URL, {}, false);
+      if (res.error) {
+        throw res;
+      }
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async createProperty(data: any) {
+    try {
+      const value = window.localStorage.getItem('losscontrol-user');
+      data.inspected = false;
+      data.company = JSON.parse(value)._id;
+      data.contact = data.contact.toString();
+      const BASE_URL = `${this.http.apiRoot}/properties`;
+      const res = await this.http.post(BASE_URL, data, false);
+      if (res.error) {
+        throw res;
+      }
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // async getPropertyById(id: any) {}
+
+  // async updateProperty(id: any) {}
+
+  // async deleteProperty(id: any) {}
+}

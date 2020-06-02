@@ -1,4 +1,6 @@
 interface Property {
+    company: any;
+    contact: string;
     id: number;
     description: string;
     name: string;
