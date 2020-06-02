@@ -7,6 +7,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
@@ -14,6 +15,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types": ["jquery","bootstrap"],
     "lib": [
       "es2018",
       "dom"

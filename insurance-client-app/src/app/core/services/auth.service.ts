@@ -18,8 +18,8 @@ export class AuthService {
         throw res;
       }
       const { user, token } = res;
-      localStorage.setItem('losscontrol-token', token);
-      localStorage.setItem('losscontrol-user', user);
+      window.localStorage.setItem('losscontrol-token', token);
+      window.localStorage.setItem('losscontrol-user', JSON.stringify(user));
       return res;
     } catch (error) {
       throw error;
@@ -27,8 +27,8 @@ export class AuthService {
   }
 
   async logout() {
-    localStorage.removeItem('losscontrol-token');
-    localStorage.removeItem('losscontrol-user');
+    window.localStorage.removeItem('losscontrol-token');
+    window.localStorage.removeItem('losscontrol-user');
     this.router.navigate(['login']);
   }
 
@@ -37,7 +37,6 @@ export class AuthService {
     // eslint-disable-next-line no-useless-catch
     try {
       const BASE_URL = `${this.http.apiRoot}/auth/register`;
-      console.log(user);
       const res = await this.http.post(BASE_URL, user, false);
       if (res.error) {
         throw res;

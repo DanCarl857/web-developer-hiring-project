@@ -1,5 +1,8 @@
+/* eslint-disable no-useless-catch */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PropertyService } from 'src/app/core/services/property.service';
 
 @Component({
   selector: 'app-property',
@@ -16,13 +19,19 @@ export class PropertyComponent implements OnInit {
     description: ''
   };
   submitted = false;
+  properties: any = [];
 
-  constructor() {
+  constructor(private propertyService: PropertyService) {
+    this.getAllProperties();
     this.createForm();
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   ngOnInit() {}
+
+  async getAllProperties() {
+    const value = await this.propertyService.getAllProperties();
+    this.properties = [...value.data];
+  }
 
   createForm(): void {
     this.propertyForm = new FormGroup({
@@ -43,8 +52,7 @@ export class PropertyComponent implements OnInit {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async onSubmit() {
+  async onSubmit(c) {
     this.submitted = true;
 
     try {
@@ -56,7 +64,8 @@ export class PropertyComponent implements OnInit {
         description: this.propertyForm.controls['description'].value
       };
 
-      console.log(property);
+      await this.propertyService.createProperty(property);
+      this.getAllProperties();
     } catch (error) {
       console.log(error);
     }

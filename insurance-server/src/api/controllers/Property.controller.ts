@@ -1,5 +1,6 @@
 import PropertyModel from './../models/Property';
 import express from 'express';
+import mongoose from 'mongoose';
 import Property from '../interfaces/property.interface';
 import Controller from '../interfaces/Controller.interface';
 import PropertyNotFoundException from '../exceptions/PropertyNotFoundException';
@@ -23,14 +24,24 @@ class PropertyController implements Controller {
     }
 
     private createProperty(request: express.Request, response: express.Response, next: express.NextFunction) {
-        const propertyData: Property = request.body;
-        const createdProperty = new PropertyModel(propertyData);
+        let propertyData: Property = request.body;
+        const createdProperty = new PropertyModel({
+            _id: new mongoose.Types.ObjectId(),
+            name: propertyData.name,
+            price: propertyData.price,
+            address: propertyData.address,
+            contact: propertyData.contact,
+            description: propertyData.description,
+            inspected: propertyData.inspected,
+            company: propertyData.company
+        });
         createdProperty
             .save()
             .then(result => {
                 response.status(201).json(result);
             })
             .catch(err => {
+                console.log(err);
                 next(new HttpException(500, 'Error creating a property'))
             })
     }
@@ -38,7 +49,7 @@ class PropertyController implements Controller {
     private getAllProperties(request: express.Request, response: express.Response, next: express.NextFunction) {
         PropertyModel.find()
             .select('name address price inspected image description contact')
-            .populate('user', '-password')
+            .populate('company')
             .exec()
             .then(docs => {
                 const resp = {
