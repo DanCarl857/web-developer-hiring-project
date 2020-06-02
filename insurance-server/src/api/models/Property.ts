@@ -26,6 +26,9 @@ const propertySchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
+    inspection: {
+        type: String
+    },
     comment: {
         type: String,
         enum: ['DEFECTIVE', 'NEUTRAL', 'GOOD'],

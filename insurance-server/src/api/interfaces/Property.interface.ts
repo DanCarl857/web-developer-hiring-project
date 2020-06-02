@@ -10,6 +10,7 @@ interface Property {
     image: string;
     comment: string;
     rating: number;
+    inspection: string;
 }
 
 export default Property;

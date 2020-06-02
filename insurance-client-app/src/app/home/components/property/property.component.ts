@@ -18,7 +18,12 @@ export class PropertyComponent implements OnInit {
     contact: '',
     description: '',
     comment: 'NEUTRAL',
-    rating: 0
+    rating: 0,
+    floor: 0,
+    wiring: 0,
+    paint: 0,
+    roof: 0,
+    doors: 0
   };
   submitted = false;
   properties: any = [];
@@ -52,7 +57,12 @@ export class PropertyComponent implements OnInit {
       ]),
       description: new FormControl(),
       comment: new FormControl(this.property.comment, [Validators.required]),
-      rating: new FormControl(this.property.rating, [Validators.required])
+      rating: new FormControl(this.property.rating, [Validators.required]),
+      wiring: new FormControl(),
+      floor: new FormControl(),
+      paint: new FormControl(),
+      roof: new FormControl(),
+      doors: new FormControl()
     });
   }
 
@@ -67,7 +77,12 @@ export class PropertyComponent implements OnInit {
         contact: this.propertyForm.controls['contact'].value,
         description: this.propertyForm.controls['description'].value,
         comment: this.propertyForm.controls['comment'].value,
-        rating: this.propertyForm.controls['rating'].value
+        rating: this.propertyForm.controls['rating'].value,
+        wiring: this.propertyForm.controls['wiring'].value,
+        floor: this.propertyForm.controls['floor'].value,
+        paint: this.propertyForm.controls['paint'].value,
+        roof: this.propertyForm.controls['roof'].value,
+        doors: this.propertyForm.controls['doors'].value
       };
 
       await this.propertyService.createProperty(property);
