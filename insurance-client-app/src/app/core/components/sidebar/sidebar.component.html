@@ -4,10 +4,10 @@
     </div>
 
     <ul class="list-unstyled-components mt-3">
-        <li>
+        <li [routerLink]="[{ outlets: { sidebar: ['dashboard']}}]">
             <a>Dashboard</a>
         </li>
-        <li>
+        <li [routerLink]="[{ outlets: { sidebar: ['property'] }}]">
             <a>Properties</a>
         </li>
         <li (click)="logout()">
