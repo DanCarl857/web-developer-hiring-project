@@ -3,23 +3,9 @@
     width: 100%;
     align-items: stretch;
 
-    .row {
-        margin: 30px 0;
-    }
-
     #content-wrapper {
         background-color: #fff;
         width: 100%;
         overflow-x: hidden;
-
-        #content {
-            -webkit-box-flex: 1;
-            -ms-flex: 1 0 auto;
-            flex: 1 0 auto; 
-        }
-
-        .container-fluid {
-            padding: 0 1.5rem;
-        }
     }
 }
