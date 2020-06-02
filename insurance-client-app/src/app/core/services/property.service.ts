@@ -30,6 +30,15 @@ export class PropertyService {
       data.contact = data.contact.toString();
       const BASE_URL = `${this.http.apiRoot}/properties`;
       data.inspected = data.rating > 0 ? true : false;
+      const inspection = {
+        wiring: data.wiring,
+        floor: data.floor,
+        paint: data.paint,
+        roof: data.roof,
+        doors: data.doors
+      };
+      const tempInspection = JSON.stringify(inspection);
+      data.inspection = tempInspection;
       const res = await this.http.post(BASE_URL, data, false);
       if (res.error) {
         throw res;

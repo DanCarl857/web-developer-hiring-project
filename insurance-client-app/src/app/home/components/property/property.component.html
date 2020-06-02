@@ -37,30 +37,48 @@
                             </div>
                             <div class="form-group">
                                 <label for="descriptionInput">Description</label>
-                                <textarea class="form-control" id="descriptionInput" formControlName="description" rows="3"></textarea>
+                                <textarea class="form-control" id="descriptionInput" formControlName="description" rows="2"></textarea>
                             </div>
                             <hr>
                             <h6>Inspection</h6>
                             <div class="row">
-                                <div class="col-md-5">
-                                    <input type="number" class="form-control" placeholder="Item">
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control" placeholder="Wiring & Pipes" disabled>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="number" class="form-control" placeholder="Value">
+                                    <input type="number" formControlName="wiring" class="form-control" placeholder="Value">
                                 </div>
-                                <div class="col-md-1">
-                                    <button class="btn btn-success">
-                                        <span>
-                                            <img src="assets/icons/icons-download.png" width="22" />
-                                        </span>
-                                    </button>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control" placeholder="Floor condition" disabled>
                                 </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-default">
-                                        <span>
-                                            <img src="assets/icons/icon-plus.png" width="22" />
-                                        </span>
-                                    </button>
+                                <div class="col-md-4">
+                                    <input type="number" formControlName="floor" class="form-control" placeholder="Value">
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control" placeholder="Paint Condition" disabled>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" formControlName="paint" class="form-control" placeholder="Value">
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control" placeholder="Roof Condition" disabled>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" formControlName="roof" class="form-control" placeholder="Value">
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control" placeholder="Doors, windows & ceilings" disabled>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" formControlName="doors" class="form-control" placeholder="Value">
                                 </div>
                             </div>
                             <br>

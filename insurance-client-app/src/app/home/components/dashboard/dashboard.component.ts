@@ -29,6 +29,11 @@ export class DashboardComponent implements OnInit {
   goodProperties = 0;
   defectiveProperties = 0;
   neutralProperties = 0;
+  wiring = 0;
+  floor = 0;
+  paint = 0;
+  roof = 0;
+  doors = 0;
 
   // Plot Pie chart
   public pieChartOptions: ChartOptions = {
@@ -44,17 +49,15 @@ export class DashboardComponent implements OnInit {
     responsive: true
   };
   public radarChartLabels: Label[] = [
-    'Bad Wiring',
+    'Wiring & Pipes',
+    'Floor Condition',
+    'Paint Condition',
     'Roof Condition',
-    'Leaking pipes',
-    'Rotten Wood',
-    'Poor painting',
-    'Destroyed ceilings',
-    'Bad Doors'
+    'Doors, windows & ceilings'
   ];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [0, 1, 2, 3, 4, 5, 6], label: 'Property Defect Analysis' }
+    { data: [0, 0, 0, 0, 0, 0], label: 'Property Defect Analysis' }
   ];
   public radarChartType: ChartType = 'radar';
 
@@ -84,6 +87,16 @@ export class DashboardComponent implements OnInit {
 
     // Generate some data
     [...data.data].map((property) => {
+      // Generate data for Defect Analysis graph
+      if (property.inspection) {
+        const inspectionData = JSON.parse(property.inspection);
+        this.wiring += inspectionData.wiring;
+        this.floor += inspectionData.floor;
+        this.paint += inspectionData.paint;
+        this.roof += inspectionData.roof;
+        this.doors += inspectionData.doors;
+      }
+
       if (property.inspected) {
         this.propertiesInspected += 1;
       }
@@ -95,6 +108,13 @@ export class DashboardComponent implements OnInit {
         this.neutralProperties += 1;
       }
     });
+
+    this.radarChartData = [
+      {
+        data: [this.wiring, this.floor, this.paint, this.roof, this.doors],
+        label: 'Property Defect Analysis'
+      }
+    ];
 
     const inspected = (
       (this.propertiesInspected / this.totalCount) *

@@ -34,7 +34,8 @@ class PropertyController implements Controller {
             inspected: propertyData.inspected,
             company: propertyData.company,
             comment: propertyData.comment,
-            rating: propertyData.rating
+            rating: propertyData.rating,
+            inspection: propertyData.inspection
         });
         createdProperty
             .save()
@@ -48,7 +49,7 @@ class PropertyController implements Controller {
     
     private getAllProperties(request: express.Request, response: express.Response, next: express.NextFunction) {
         PropertyModel.find()
-            .select('name address price inspected image description comment contact rating')
+            .select('name address price inspected image description comment contact rating inspection')
             .populate('company')
             .exec()
             .then(docs => {
@@ -66,7 +67,7 @@ class PropertyController implements Controller {
     private getPropertyById(request: express.Request, response: express.Response, next: express.NextFunction) {
         const id = request.params.id;
         PropertyModel.findById(id)
-            .select("_id name description inspected price comment image address contact rating")
+            .select("_id name description inspected price comment image address contact rating inspection")
             .exec()
             .then(doc => {
                 if (doc) {
