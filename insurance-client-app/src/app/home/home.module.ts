@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CoreModule } from '../core/core.module';
 import { PropertyComponent } from './components/property/property.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent, PropertyComponent, DashboardComponent],
@@ -16,7 +17,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     HomeRoutingModule,
     RouterModule,
     CoreModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class HomeModule {}
