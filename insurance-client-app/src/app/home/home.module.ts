@@ -6,9 +6,10 @@ import { ChartsModule } from 'ng2-charts';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { CoreModule } from '../core/core.module';
+import { PropertyComponent } from './property/property.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, PropertyComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
