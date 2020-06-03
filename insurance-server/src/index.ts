@@ -29,7 +29,7 @@ function loggerMiddleware(request: express.Request, response: express.Response, 
 } 
 
 // Connect to Mongo database
-mongoose.connect('mongodb://localhost/losscontrol-api', { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/losscontrol-api', { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: true, useUnifiedTopology: true });
 
 // App Configuration
 app.use(helmet());
