@@ -42,7 +42,9 @@ You can generate test data for this application using the seeder tool I created.
 From the root directory:
 * `cd seeder`
 * `npm install` to install dependencies
-* `npm run seed-database`
+```
+npm run seed-database
+```
 * You should now see an email and a password in the terminal
 * Those are your login credentials
 * You can close the terminal and proceed to run the backend and frontend
@@ -99,7 +101,7 @@ Below are some screenshots of the application:
 ![Dashboard Image](screenshots/dashboard.png)
 
 ### Properties
-![Properties Image](screenshots/properties.png)
+![Properties Image](screenshots/property.png)
 
 ### Create Property
 ![Create property Image](screenshots/create_property.png)
