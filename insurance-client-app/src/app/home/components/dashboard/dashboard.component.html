@@ -152,7 +152,14 @@
                         <td>{{defectiveProperty.name}}</td>
                         <td>{{defectiveProperty.price}}</td>
                         <td>{{defectiveProperty.rating}}</td>
-                        <td>{{defectiveProperty.comment}}</td>
+                        <td>
+                          <span class="badge"
+                          [ngClass]="{
+                            'badge-danger':defectiveProperty.comment === 'DEFECTIVE',
+                            'badge-success':defectiveProperty.comment === 'NEUTRAL',
+                            'badge-primary': defectiveProperty.comment === 'GOOD'
+                          }">{{defectiveProperty.comment}}</span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -179,7 +186,14 @@
                         <td>{{bestProperty.name}}</td>
                         <td>{{bestProperty.price}}</td>
                         <td>{{bestProperty.rating}}</td>
-                        <td>{{bestProperty.comment}}</td>
+                        <td>
+                          <span class="badge"
+                          [ngClass]="{
+                            'badge-danger':bestProperty.comment === 'DEFECTIVE',
+                            'badge-success':bestProperty.comment === 'NEUTRAL',
+                            'badge-primary': bestProperty.comment === 'GOOD'
+                          }">{{bestProperty.comment}}</span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>

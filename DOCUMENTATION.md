@@ -49,12 +49,32 @@ From the root directory:
 
 #### Backend and Frontend
 * Clone repository and from the root directory;
-* Install dependencies using: `cd insurance-client-app` 
+* Install dependencies using: `cd insurance-client-app && npm install` 
 * To run the web application: `ng serve`
-* Install dependencies using: `cd insurance-server` 
+* Install dependencies using: `cd insurance-server && npm install` 
+
+If you want to have HMR during development:
+
 * To use Hot Module Replacement: `npm run webpack` 
-* And in another terminal run `npm run start` to run the server (_you must have run the previous command at least once for this step to work_).
+* And in another terminal run `npm run dev` to run the server (_you must have run the previous command at least once for this step to work_).
+
+And if you don't want to have HMR:
+
+* `npm run start`
+
 * Web app will be accessible in the browser at: [localhost:4200](http://localhost:4200)
+* Server will be running on port [7001]()
+
+#### Docker
+```
+docker-compose up
+```
+
+For development, the `insurance-server/` and `insurance-client-app/` directories have their own docker containers, which are configured via the `docker-compose.yml` file.
+
+The webapp is spun up at `localhost:4200`
+
+The local directories are mounted into the containers, so changes will reflect immediately. However, changes to package.json will likely need to a rebuild: `docker-compose down && docker-compose build && docker-compose up`.
 
 
 ## Difficulties

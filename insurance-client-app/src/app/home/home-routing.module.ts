@@ -9,6 +9,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
+      { path: '', component: DashboardComponent, outlet: 'sidebar' },
       { path: 'dashboard', component: DashboardComponent, outlet: 'sidebar' },
       { path: 'property', component: PropertyComponent, outlet: 'sidebar' }
     ]

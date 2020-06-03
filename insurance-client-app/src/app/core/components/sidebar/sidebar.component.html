@@ -3,15 +3,26 @@
         <h3>Loss Control +</h3>
     </div>
 
-    <ul class="list-unstyled-components mt-3">
-        <li [routerLink]="[{ outlets: { sidebar: ['dashboard']}}]">
+    <!-- <ul class="list-unstyled-components mt-3">
+        <li [routerLink]="[{ outlets: { sidebar: ['dashboard']}}]" [routerLinkActive]="['is-active']">
             <a>Dashboard</a>
         </li>
-        <li [routerLink]="[{ outlets: { sidebar: ['property'] }}]">
+        <li [routerLink]="[{ outlets: { sidebar: ['property'] }}]"  [routerLinkActive]="['is-active']">
             <a>Properties</a>
         </li>
         <li (click)="logout()">
             <a>Logout</a>
         </li>
-    </ul>
+    </ul> -->
+    <ul class="nav flex-column">
+        <li class="nav-item" [routerLink]="[{ outlets: { sidebar: ['dashboard']}}]" [routerLinkActive]="['is-active']">
+          <a class="nav-link active">Dashboard</a>
+        </li>
+        <li class="nav-item" [routerLink]="[{ outlets: { sidebar: ['property'] }}]"  [routerLinkActive]="['is-active']">
+          <a class="nav-link">Properties</a>
+        </li>
+        <li class="nav-item" (click)="logout()">
+          <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Logout</a>
+        </li>
+      </ul>
 </nav>

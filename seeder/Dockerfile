@@ -7,6 +7,4 @@ RUN npm install -qy
 
 COPY . .
 
-EXPOSE 7001
-
-CMD ["npm", "start"]
+CMD ["npm", "seed-database"]
