@@ -5,7 +5,7 @@ Building an application which insurance companies can use for property inspectio
 The _back end_ for this application was done using the following technological stack:
 * [NodeJS]() and [Express]()
 * [Typescript]()
-* [Jest]() for testing
+* [Mocha]() and [Chai]() for testing
 * [Webpack]() for Hot-Module Replacement to significantly improve development times
 
 The _front end_ is done using:
