@@ -11,7 +11,6 @@ export class PropertyService {
 
   async getAllProperties() {
     const value = JSON.parse(window.localStorage.getItem('losscontrol-user'));
-    console.log(value._id);
     // eslint-disable-next-line no-useless-catch
     try {
       const BASE_URL = `${this.http.apiRoot}/auth/${value._id}/properties`;

@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
 
   async getAllProperties() {
     const value = await this.propertyService.getAllProperties();
-    const tempData = [...value.data];
+    const tempData = [...value];
     tempData.sort((a, b) => a.rating - b.rating);
 
     // First 3 properties are the worst
@@ -86,10 +86,10 @@ export class DashboardComponent implements OnInit {
 
   generateDashboardData(data) {
     // Total # of properties
-    this.totalCount = data.count;
+    this.totalCount = data.length;
 
     // Generate some data
-    [...data.data].map((property) => {
+    [...data].map((property) => {
       // Generate data for Defect Analysis graph
       if (property.inspection) {
         const inspectionData = JSON.parse(property.inspection);
