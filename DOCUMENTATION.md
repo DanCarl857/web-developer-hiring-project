@@ -15,6 +15,7 @@ The _front end_ is done using:
 The _seeder_ is done using:
 * [VanillaJS]()/[NodeJS]() for the seeder tool.
 * [CommanderJS](https://github.com/tj/commander.js/) - elegant command line library for NodeJS
+* [Faker.js](https://github.com/marak/Faker.js/) - generate massive amounts of realistic fake data in NodeJS and the browser
 
 _Storage_
 * [MongoDB]() for storage.
@@ -47,9 +48,12 @@ From the root directory:
 * You can close the terminal and proceed to run the backend and frontend
 
 #### Backend and Frontend
-* Clone repository
-* Install dependencies using: `cd insurance-client-app && ng start` to run the web application
-* Install dependencies using: `cd insurance-server && npm run webpack` and in another terminal run `npm run start` to run the server.
+* Clone repository and from the root directory;
+* Install dependencies using: `cd insurance-client-app` 
+* To run the web application: `ng serve`
+* Install dependencies using: `cd insurance-server` 
+* To use Hot Module Replacement: `npm run webpack` 
+* And in another terminal run `npm run start` to run the server (_you must have run the previous command at least once for this step to work_).
 * Web app will be accessible in the browser at: [localhost:4200](http://localhost:4200)
 
 
@@ -60,7 +64,6 @@ From the root directory:
 * Increase test coverage
 * Setup CI/CD pipelines
 * Improve error reporting and handling in both the webapp and API
-* Make use of async/await in server code to make things a bit cleaner.
 * Work on data validation
 
 ## Demo
