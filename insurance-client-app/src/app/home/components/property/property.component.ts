@@ -37,7 +37,7 @@ export class PropertyComponent implements OnInit {
 
   async getAllProperties() {
     const value = await this.propertyService.getAllProperties();
-    this.properties = [...value.data];
+    this.properties = [...value];
   }
 
   createForm(): void {

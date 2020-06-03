@@ -6,6 +6,7 @@ interface User extends mongoose.Document {
     password: string,
     username: string,
     phone: string,
+    properties: []
 }
 
 export default User;
