@@ -67,3 +67,5 @@ if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => server.close());
 }
+
+export default app;
