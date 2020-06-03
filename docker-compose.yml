@@ -1,0 +1,29 @@
+version: '3'
+services:
+    seeder:
+        build:
+            context: ./seeder
+        command: npm run seed-database
+    server:
+        build:
+            context: ./insurance-server/
+        command: npm start
+        volumes:
+        - ./insurance-server/:/usr/app
+        - /usr/app/node_modules
+        ports:
+        - "7001:7001"
+        environment:
+        - NODE_ENV=development
+        - CHOKIDAR_USEPOLLING=true
+    client:
+        build:
+            context: ./insurance-client-app/
+        command: ng serve
+        volumes:
+        - ./insurance-client-app/:/usr/src/app
+        - /usr/src/app/node_modules
+        depends_on:
+        - server
+        ports:
+        - "4200:4200"
