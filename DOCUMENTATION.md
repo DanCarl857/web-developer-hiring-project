@@ -14,6 +14,7 @@ The _front end_ is done using:
 
 The _seeder_ is done using:
 * [VanillaJS]()/[NodeJS]() for the seeder tool.
+* [CommanderJS](https://github.com/tj/commander.js/) - elegant command line library for NodeJS
 
 _Storage_
 * [MongoDB]() for storage.
@@ -36,6 +37,14 @@ _Storage_
 ## Development
 
 #### Seeding the Database
+You can generate test data for this application using the seeder tool I created.
+From the root directory:
+* `cd seeder`
+* `npm install` to install dependencies
+* `npm run seed-database`
+* You should now see an email and a password in the terminal
+* Those are your login credentials
+* You can close the terminal and proceed to run the backend and frontend
 
 #### Backend and Frontend
 * Clone repository
@@ -57,17 +66,17 @@ _Storage_
 ## Demo
 Below are some screenshots of the application:
 
-Login
+### Login
 ![Login Image](screenshots/login.png)
 
-Signup
+### Signup
 ![Signup Image](screenshots/signup.png)
 
-Dashboard
+### Dashboard
 ![Dashboard Image](screenshots/dashboard.png)
 
-Properties
+### Properties
 ![Properties Image](screenshots/properties.png)
 
-Create Property
+### Create Property
 ![Create property Image](screenshots/create_property.png)

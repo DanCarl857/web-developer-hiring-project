@@ -76,6 +76,9 @@ export class DashboardComponent implements OnInit {
     const value = await this.propertyService.getAllProperties();
     const tempData = [...value.data];
     tempData.sort((a, b) => a.rating - b.rating);
+
+    // First 3 properties are the worst
+    // and last 3 are the best based on their ratings
     this.defectivePropertyArray = tempData.slice(0, 3);
     this.goodPropertyArray = tempData.slice(Math.max(tempData.length - 3, 0));
     this.generateDashboardData(value);
