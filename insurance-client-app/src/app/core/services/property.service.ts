@@ -10,14 +10,16 @@ export class PropertyService {
   constructor(private http: HttpService) {}
 
   async getAllProperties() {
+    const value = JSON.parse(window.localStorage.getItem('losscontrol-user'));
+    console.log(value._id);
     // eslint-disable-next-line no-useless-catch
     try {
-      const BASE_URL = `${this.http.apiRoot}/properties`;
+      const BASE_URL = `${this.http.apiRoot}/auth/${value._id}/properties`;
       const res = await this.http.get(BASE_URL, {}, false);
       if (res.error) {
         throw res;
       }
-      return res;
+      return res.page;
     } catch (error) {
       throw error;
     }
